@@ -1,0 +1,17 @@
+{
+  "name": "peardownloaderdemo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "pdfobject.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "git_push": "git add . && git commit -m 'update' && git push",
+    "deploy": "pm2 deploy ecosystem.json production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/PearInc/PearDownloaderDemo.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
