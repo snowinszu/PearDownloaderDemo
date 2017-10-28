@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--<script src="../pear-downloader.js"></script>-->
+<script src="./pear-downloader.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Pear Downloader Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        #main {
+            margin: 40px auto;
+            width: 1000px;
+        }
+
+        #main .jumbotron {
+            padding-left: 48px;
+            padding-right: 48px;
+        }
+
+        #main label {
+            margin: 0;
+        }
+
+        #main .table-hover>tbody>tr:hover {
+            background-color: aliceblue;
+        }
+
+        #main .progress {
+            margin-bottom: 0;
+        }
+
+        #main p {
+            margin: 15px auto;
+            word-break: break-all;
+        }
+
+        /*内容区域底部样式*/
+        #content-footer{
+            text-align: center;
+            /*border: 1px red solid;*/
+        }
+        .insertButton{
+            width: 15px;
+            height: 20px;
+            margin: 5px 1px;
+            background-color: #C0C0C0;
+            border: 0;
+            float:left;
+        }
+
+        .setDownType{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 1px #ccc solid;
+            margin-bottom: -5px;
+        }
+        .defualtColor{
+            background-color: #D3D3D3;
+        }
+        .labelDownColor{
+            color: #D3D3D3;
+            margin-right: 20px;
+        }
+        .serverColor{
+            background-color: red;
+        }
+        .labelServer{
+            color: red;
+            margin-right: 20px;
+        }
+        .nodeColor{
+            background-color: blue;
+        }
+        .labelNodeColor{
+            color:blue;
+            margin-right: 20px;
+        }
+        .dataChannelColor{
+            background-color: green;
+        }
+        .browserColor{
+            background-color: purple;
+        }
+        .labelChannelColor{
+            color: green
+        }
+        .labelBrowser{
+            color: purple;
+        }
+    </style>
+</head>
+
+<body>
+<div id="main">
+
+
+    <div>
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#picture" aria-controls="picture" role="tab" data-toggle="tab">普通图片下载</a></li>
+            <li role="presentation"><a href="#picture_p" aria-controls="picture_p" role="tab" data-toggle="tab">渐进图片下载</a></li>
+            <li role="presentation"><a href="#audio" aria-controls="audio" role="tab" data-toggle="tab">音频下载</a></li>
+            <li role="presentation"><a href="#pdf" aria-controls="pdf" role="tab" data-toggle="tab">PDF下载</a></li>
+            <li role="presentation"><a href="#binary" aria-controls="binary" role="tab" data-toggle="tab">二进制文件下载</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="picture">
+                <div class="jumbotron">
+                    <h1>Pear Downloader <small>download picture</small></h1>
+                    <p>Download by URL</p>
+                    <div class="input-group">
+                        <input type="text" class="form-control cpm-inputurl" placeholder="input url..." value="https://qq.webrtc.win/picture/Pear-Demo-Church.jpg">
+                        <section class="input-group-btn">
+                            <button class="btn btn-primary cpm-downloadfiles">
+                                <span class="glyphicon glyphicon-arrow-down"></span>
+                            </button>
+                        </section>
+                    </div>
+                </div>
+                <div class="sr-only cpm-downloadresult">
+                    <p class="help-block">Downloading...</p>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <td>#</td>
+                            <td>Filename</td>
+                            <td>Size</td>
+                            <td>DownloadSpeed</td>
+                            <td>Progress</td>
+                            <td>Link</td>
+                        </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <img id="image" src="" alt="" width="100%" height="500px" style="overflow: auto;">
+            </div>
+
+            <div role="tabpanel" class="tab-pane" id="picture_p">
+                <div class="jumbotron">
+                    <h1>Pear Downloader <small>download progressive picture</small></h1>
+                    <p>Download by URL</p>
+                    <div class="input-group">
+                        <input type="text" class="form-control cpm-inputurl" placeholder="input url..." value="https://qq.webrtc.win/picture/Pear-Demo-Church-P.jpg">
+                        <section class="input-group-btn">
+                            <button class="btn btn-primary cpm-downloadfiles">
+                                <span class="glyphicon glyphicon-arrow-down"></span>
+                            </button>
+                        </section>
+                    </div>
+                </div>
+                <div class="sr-only cpm-downloadresult">
+                    <p class="help-block">Downloading...</p>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <td>#</td>
+                            <td>Filename</td>
+                            <td>Size</td>
+                            <td>DownloadSpeed</td>
+                            <td>Progress</td>
+                            <td>Link</td>
+                        </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <img id="image_p" src="" alt="" width="100%" height="500px" style="overflow: auto;">
+            </div>
+
+            <div role="tabpanel" class="tab-pane" id="audio">
+                <div class="jumbotron">
+                    <h1>Pear Downloader <small>download audio</small></h1>
+                    <p>Download by URL</p>
+                    <div class="input-group">
+                        <input type="text" class="form-control cpm-inputurl" placeholder="input url..." value="https://qq.webrtc.win/picture/Pear-Demo-audio.mp3">
+                        <section class="input-group-btn">
+                            <button class="btn btn-primary cpm-downloadfiles">
+                                <span class="glyphicon glyphicon-arrow-down"></span>
+                            </button>
+                        </section>
+                    </div>
+                </div>
+                <div class="sr-only cpm-downloadresult">
+                    <p class="help-block">Downloading...</p>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <td>#</td>
+                            <td>Filename</td>
+                            <td>Size</td>
+                            <td>DownloadSpeed</td>
+                            <td>Progress</td>
+                            <td>Link</td>
+                        </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <audio id="sound" controls loop></audio>
+            </div>
+
+            <div role="tabpanel" class="tab-pane" id="pdf">
+                <div class="jumbotron">
+                    <h1>Pear Downloader <small>download pdf</small></h1>
+                    <p>Download by URL</p>
+                    <div class="input-group">
+                        <input type="text" class="form-control cpm-inputurl" placeholder="input url..." value="https://qq.webrtc.win/documents/Pear-Demo-Apple-BP-1977-PCW-Comments.pdf">
+                        <section class="input-group-btn">
+                            <button class="btn btn-primary cpm-downloadfiles">
+                                <span class="glyphicon glyphicon-arrow-down"></span>
+                            </button>
+                        </section>
+                    </div>
+                </div>
+                <div class="sr-only cpm-downloadresult">
+                    <p class="help-block">Downloading...</p>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <td>#</td>
+                            <td>Filename</td>
+                            <td>Size</td>
+                            <td>DownloadSpeed</td>
+                            <td>Progress</td>
+                            <td>Link</td>
+                        </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <div id="my-container" class="ng-scope pdfobject-container">
+                    <iframe src="" type="application/pdf" width="100%" height="500px" style="overflow: auto;">
+                    </iframe>
+                </div>
+            </div>
+
+            <div role="tabpanel" class="tab-pane" id="binary">
+                <div class="jumbotron">
+                    <h1>Pear Downloader <small>download binary file</small></h1>
+                    <p>Download by URL</p>
+                    <div class="input-group">
+                        <input type="text" class="form-control cpm-inputurl" placeholder="input url..." value="https://qq.webrtc.win/binary/Pear-Demo-binary-file.zip">
+                        <section class="input-group-btn">
+                            <button class="btn btn-primary cpm-downloadfiles">
+                                <span class="glyphicon glyphicon-arrow-down"></span>
+                            </button>
+                        </section>
+                    </div>
+                </div>
+                <div class="sr-only cpm-downloadresult">
+                    <p class="help-block">Downloading...</p>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <td>#</td>
+                            <td>Filename</td>
+                            <td>Size</td>
+                            <td>DownloadSpeed</td>
+                            <td>Progress</td>
+                            <td>Link</td>
+                        </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="content-footer">
+
+            <div class="dropdown defalutStyleplay">
+                <button class="btn btn-default obrDropdown" type="button">
+                    详细信息
+                    <span class="caret"></span>
+                </button>
+                <div class="setDownTypeArea setDownTypeAreaShow">
+                    <div class="progressColorSet">
+                        <div class="setDownType defualtColor" id = "defualtDownColor">
+
+                        </div>
+                        <label for="defualtDownColor" class="labelDownColor" style="display:inline-block">Undownloaded</label>
+                        <div class="setDownType serverColor" id = "defualtserverColor">
+
+                        </div>
+                        <label for="defualtserverColor" class="labelServer">Cloud Server(s)</label>
+                        <div class="setDownType nodeColor" id = "defaultnodeColor">
+
+                        </div>
+                        <label for="defaultnodeColor" class = "labelNodeColor">Fog Node(s) HTTP</label>
+                        <div class="setDownType dataChannelColor" id = "defaultdataChannelColor">
+
+                        </div>
+                        <label for="defaultdataChannelColor" class="labelChannelColor">Fog Node(s) WebRTC</label>
+                        <div class="setDownType browserColor" id = "defaultbrowserColor">
+
+                        </div>
+                        <label for="defaultbrowserColor" class="labelBrowser">Fog Node(s) Browser</label>
+                        <!-- <div class="setDownType" id = "">
+                          4
+                        </div>
+                        <label for="defualtDownColor" class=" ">default</label> -->
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="downDataProgress defaultdownDataProgress">
+
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+<!--<script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.1.0/dist/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="pdfobject.min.js"></script>
+<script>
+    //获取token
+    var token = '';
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", 'https://api.webrtc.win:6601/v1/customer/login');
+    var data = JSON.stringify({
+        username:'test',
+        password:'123456'
+    });
+    xhr.onload = function () {
+        if (this.status >= 200 && this.status < 300) {
+
+            var res = JSON.parse(this.response);
+            if (!!res.token){
+//                console.log('token:' +res.token);
+                token = res.token;
+            }
+        } else {
+            alert('请求出错!');
+        }
+    };
+    xhr.send(data);
+
+    // 默认的数字下载小方格
+    var defaultDownButton = 0;
+
+    //----------------------------------------picture-----------------------------------------------------------------
+
+    (function () {
+
+        var cpm = {
+                inputURL: document.querySelectorAll('.cpm-inputurl')[0],
+                selectfiles: document.querySelectorAll('.cpm-selectfiles')[0],
+                downloadfiles: document.querySelectorAll('.cpm-downloadfiles')[0],
+                downloadresult: document.querySelectorAll('.cpm-downloadresult')[0],
+                table: document.querySelectorAll('.cpm-downloadresult table tbody')[0]
+            },
+            addToTable = function (i, n, s, d) {
+                cpm.table.innerHTML +=
+                    `<tr>
+                    <td>${i}</td>
+                    <td>${n}</td>
+                    <td></td>
+                    <td>${d}</td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;width: 0%">0%</div>
+                        </div>
+                    </td>
+                    <td><a class="sr-only" href="javascript:void(0);" download="pear.file">Waiting</a></td>
+                </tr>`
+            },
+             clientAdd = function (url) {
+                console.log('url:'+url);
+                var progress, size, speed, link;
+                //第一个参数为video标签的id或class
+                var downloader = new PearDownloader(url, token, {
+                    algorithm: 'firstaid',      //核心算法,默认firstaid
+                    interval: 5000,             //滑动窗口的时间间隔,单位毫秒,默认10s
+                    auto: false,                //true为连续下载buffer,false则是只有当前播放时间与已缓冲时间小于slideInterval时下载buffer,默认false
+                    slideInterval: 20,          //当前播放时间与已缓冲时间小于这个数值时触发窗口滑动,单位秒,默认20s
+                    useDataChannel: true,       //是否开启data channel,默认true
+                    dataChannels: 10,            //创建data channel的最大数量,默认2
+                    useTorrent: true,           //是否开启Browser P2P(基于Webtorrent)，默认true
+//                    magnetURI: magnetURI,       //可手动传入magnetURI，需先将useTorrent设为true
+//                    trackers:["wss://tracker.openwebtorrent.com"],    //可手动传入tracker服务器，需先将useTorrent设为true
+                    useMonitor: true,             //是否开启monitor,会稍微影响性能,默认false
+                    ordered: true
+                });
+                window.downloader = downloader;
+                addToTable(1, downloader.fileName, 0, 0);
+                progress = cpm.table.querySelectorAll('.progress-bar')[0];
+                link = cpm.table.querySelectorAll('tr td:last-child a')[0];
+                size = cpm.table.querySelectorAll('tr td:nth-child(3)')[0];
+                speed = cpm.table.querySelectorAll('tr td:nth-child(4)')[0];
+                window.link = link;
+                downloader.on('exception', function (exception) {
+                    var errCode = exception.errCode;
+                    switch (errCode) {
+                        case 1:
+                            console.log(exception.errMsg);
+                            break;
+                        case 2:
+                            console.log(exception.errMsg);
+                            link.href = cpm.inputURL.value;
+                            link.download = downloader.fileName;
+                            link.innerHTML = 'Download';
+                            link.classList.remove('sr-only');
+                            break;
+                    }
+                });               //下载器出现异常时的回调函数
+                downloader.on('begin', function (fileLength, chunks) {
+                    size.innerHTML = (fileLength/1024/1024).toFixed(2) + 'MB';
+
+                    defaultDownButton = chunks;
+                    toggoleObser();
+                });　　　　　　　　　　　　　 //开始下载时触发
+                downloader.on('meanspeed', function (meanSpeed) {
+                    speed.innerHTML = Math.round(meanSpeed) + 'KB/s';
+                });
+                downloader.on('progress', function (downloaded) {
+                    console.log('Progress: ' + (downloaded * 100).toFixed(1) + '%');
+                    var percent = (downloaded * 100).toFixed(1);
+                    percent = ((percent < 100) ? percent : 100);
+                    progress.innerHTML = percent + "%";
+                    progress.style.width = percent + "%";
+
+                    downloader.file.getProgressiveBlobURL(function (error, url) {
+
+                        document.getElementById('image').src = url;
+                    })
+                });                                                   //回调目前的下载进度
+//        downloader.on('fograte', onWebRTCRate);　　　　　　　　　 //fog节点的下载比率（下载的字节数除以总的字节数）
+                downloader.on('buffersources', onBufferSources);       //buffer map，记录每个buffer的下载源类型，其中s: server   n: node  d: data channel  b: browser
+                downloader.on('done', function () {
+                    $('.help-block').innerHTML = 'Downloaded!'
+
+                    link.href = url;
+                    link.download = downloader.fileName;
+                    link.innerHTML = 'Download';
+                    link.classList.remove('sr-only');
+
+                });　　　　　　　　           //结束下载时触发
+//        downloader.on('traffic', onTraffic);                  //节点流量统计
+                downloader.on('sourcemap', onSourceMap);          //记录每个buffer的下载源类型，其中s: server   n: node  d: data channel  b: browser
+
+                 downloader.on('canplay', function () {
+
+                 })
+            };
+
+        cpm.downloadfiles.addEventListener('click', function () {
+            cpm.downloadresult.classList.remove('sr-only');
+            cpm.table.innerHTML = "";
+            clientAdd(cpm.inputURL.value);
+        });
+
+    })();
+
+
+    //----------------------------------------picture_p-----------------------------------------------------------------
+
+    (function () {
+
+        var cpm = {
+                inputURL: document.querySelectorAll('.cpm-inputurl')[1],
+                selectfiles: document.querySelectorAll('.cpm-selectfiles')[1],
+                downloadfiles: document.querySelectorAll('.cpm-downloadfiles')[1],
+                downloadresult: document.querySelectorAll('.cpm-downloadresult')[1],
+                table: document.querySelectorAll('.cpm-downloadresult table tbody')[1]
+            },
+            addToTable = function (i, n, s, d) {
+                cpm.table.innerHTML +=
+                    `<tr>
+                    <td>${i}</td>
+                    <td>${n}</td>
+                    <td></td>
+                    <td>${d}</td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;width: 0%">0%</div>
+                        </div>
+                    </td>
+                    <td><a class="sr-only" href="javascript:void(0);" download="pear.file">Waiting</a></td>
+                </tr>`
+            },
+            clientAdd = function (url) {
+                console.log('url:'+url);
+                var progress, size, speed, link;
+                //第一个参数为video标签的id或class
+                var downloader = new PearDownloader(url, token, {
+                    algorithm: 'firstaid',      //核心算法,默认firstaid
+                    interval: 5000,             //滑动窗口的时间间隔,单位毫秒,默认10s
+                    auto: false,                //true为连续下载buffer,false则是只有当前播放时间与已缓冲时间小于slideInterval时下载buffer,默认false
+                    slideInterval: 20,          //当前播放时间与已缓冲时间小于这个数值时触发窗口滑动,单位秒,默认20s
+                    useDataChannel: true,       //是否开启data channel,默认true
+                    dataChannels: 10,            //创建data channel的最大数量,默认2
+                    useTorrent: true,           //是否开启Browser P2P(基于Webtorrent)，默认true
+//                    magnetURI: magnetURI,       //可手动传入magnetURI，需先将useTorrent设为true
+//                    trackers:["wss://tracker.openwebtorrent.com"],    //可手动传入tracker服务器，需先将useTorrent设为true
+                    useMonitor: true,             //是否开启monitor,会稍微影响性能,默认false
+                    ordered: true
+                });
+                window.downloader = downloader;
+                addToTable(1, downloader.fileName, 0, 0);
+                progress = cpm.table.querySelectorAll('.progress-bar')[0];
+                link = cpm.table.querySelectorAll('tr td:last-child a')[0];
+                size = cpm.table.querySelectorAll('tr td:nth-child(3)')[0];
+                speed = cpm.table.querySelectorAll('tr td:nth-child(4)')[0];
+                window.link = link;
+                downloader.on('exception', function (exception) {
+                    var errCode = exception.errCode;
+                    switch (errCode) {
+                        case 1:
+                            console.log(exception.errMsg);
+                            break;
+                        case 2:
+                            console.log(exception.errMsg);
+                            link.href = cpm.inputURL.value;
+                            link.download = downloader.fileName;
+                            link.innerHTML = 'Download';
+                            link.classList.remove('sr-only');
+                            break;
+                    }
+                });               //下载器出现异常时的回调函数
+                downloader.on('begin', function (fileLength, chunks) {
+                    size.innerHTML = (fileLength/1024/1024).toFixed(2) + 'MB';
+
+                    defaultDownButton = chunks;
+                    toggoleObser();
+                });　　　　　　　　　　　　　 //开始下载时触发
+                downloader.on('meanspeed', function (meanSpeed) {
+                    speed.innerHTML = Math.round(meanSpeed) + 'KB/s';
+                });
+                downloader.on('progress', function (downloaded) {
+                    console.log('Progress: ' + (downloaded * 100).toFixed(1) + '%');
+                    var percent = (downloaded * 100).toFixed(1);
+                    percent = ((percent < 100) ? percent : 100);
+                    progress.innerHTML = percent + "%";
+                    progress.style.width = percent + "%";
+
+                    downloader.file.getProgressiveBlobURL(function (error, url) {
+
+                        document.getElementById('image_p').src = url;
+                    })
+                });                                                   //回调目前的下载进度
+//        downloader.on('fograte', onWebRTCRate);　　　　　　　　　 //fog节点的下载比率（下载的字节数除以总的字节数）
+                downloader.on('buffersources', onBufferSources);       //buffer map，记录每个buffer的下载源类型，其中s: server   n: node  d: data channel  b: browser
+                downloader.on('done', function () {
+                    $('.help-block').innerHTML = 'Downloaded!'
+
+                    link.href = url;
+                    link.download = downloader.fileName;
+                    link.innerHTML = 'Download';
+                    link.classList.remove('sr-only');
+
+                });　　　　　　　　           //结束下载时触发
+//        downloader.on('traffic', onTraffic);                  //节点流量统计
+                downloader.on('sourcemap', onSourceMap);          //记录每个buffer的下载源类型，其中s: server   n: node  d: data channel  b: browser
+
+                downloader.on('canplay', function () {
+
+                })
+            };
+
+        cpm.downloadfiles.addEventListener('click', function () {
+            cpm.downloadresult.classList.remove('sr-only');
+            cpm.table.innerHTML = "";
+            clientAdd(cpm.inputURL.value);
+        });
+
+    })();
+
+
+    //----------------------------------------audio-----------------------------------------------------------------
+    (function () {
+
+        var cpm = {
+                inputURL: document.querySelectorAll('.cpm-inputurl')[2],
+                selectfiles: document.querySelectorAll('.cpm-selectfiles')[2],
+                downloadfiles: document.querySelectorAll('.cpm-downloadfiles')[2],
+                downloadresult: document.querySelectorAll('.cpm-downloadresult')[2],
+                table: document.querySelectorAll('.cpm-downloadresult table tbody')[2]
+            },
+            addToTable = function (i, n, s, d) {
+                cpm.table.innerHTML +=
+                    `<tr>
+                    <td>${i}</td>
+                    <td>${n}</td>
+                    <td></td>
+                    <td>${d}</td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;width: 0%">0%</div>
+                        </div>
+                    </td>
+                    <td><a class="sr-only" href="javascript:void(0);" download="pear.file">Waiting</a></td>
+                </tr>`
+            },
+            clientAdd = function (url) {
+                console.log('url:'+url);
+                var progress, size, speed, link;
+                //第一个参数为video标签的id或class
+                var downloader = new PearDownloader(url, token, {
+                    algorithm: 'firstaid',      //核心算法,默认firstaid
+                    interval: 5000,             //滑动窗口的时间间隔,单位毫秒,默认10s
+                    auto: false,                //true为连续下载buffer,false则是只有当前播放时间与已缓冲时间小于slideInterval时下载buffer,默认false
+                    slideInterval: 20,          //当前播放时间与已缓冲时间小于这个数值时触发窗口滑动,单位秒,默认20s
+                    useDataChannel: true,       //是否开启data channel,默认true
+                    dataChannels: 10,            //创建data channel的最大数量,默认2
+                    useTorrent: true,           //是否开启Browser P2P(基于Webtorrent)，默认true
+//                    magnetURI: magnetURI,       //可手动传入magnetURI，需先将useTorrent设为true
+//                    trackers:["wss://tracker.openwebtorrent.com"],    //可手动传入tracker服务器，需先将useTorrent设为true
+                    useMonitor: true             //是否开启monitor,会稍微影响性能,默认false
+                });
+                window.downloader = downloader;
+                addToTable(1, downloader.fileName, 0, 0);
+                progress = cpm.table.querySelectorAll('.progress-bar')[0];
+                link = cpm.table.querySelectorAll('tr td:last-child a')[0];
+                size = cpm.table.querySelectorAll('tr td:nth-child(3)')[0];
+                speed = cpm.table.querySelectorAll('tr td:nth-child(4)')[0];
+                window.link = link;
+                downloader.on('exception', function (exception) {
+                    var errCode = exception.errCode;
+                    switch (errCode) {
+                        case 1:
+                            console.log(exception.errMsg);
+                            break;
+                        case 2:
+                            console.log(exception.errMsg);
+                            link.href = cpm.inputURL.value;
+                            link.download = downloader.fileName;
+                            link.innerHTML = 'Download';
+                            link.classList.remove('sr-only');
+                            break;
+                    }
+                });               //下载器出现异常时的回调函数
+                downloader.on('begin', function (fileLength, chunks) {
+                    size.innerHTML = (fileLength/1024/1024).toFixed(2) + 'MB';
+
+                    defaultDownButton = chunks;
+                    toggoleObser();
+                });　　　　　　　　　　　　　 //开始下载时触发
+                downloader.on('meanspeed', function (meanSpeed) {
+                    speed.innerHTML = Math.round(meanSpeed) + 'KB/s';
+                });
+                downloader.on('progress', function (downloaded) {
+                    console.log('Progress: ' + (downloaded * 100).toFixed(1) + '%');
+                    var percent = (downloaded * 100).toFixed(1);
+                    percent = ((percent < 100) ? percent : 100);
+                    progress.innerHTML = percent + "%";
+                    progress.style.width = percent + "%";
+                });                                                   //回调目前的下载进度
+//        downloader.on('fograte', onWebRTCRate);　　　　　　　　　 //fog节点的下载比率（下载的字节数除以总的字节数）
+                downloader.on('buffersources', onBufferSources);       //buffer map，记录每个buffer的下载源类型，其中s: server   n: node  d: data channel  b: browser
+                downloader.on('done', function () {
+                    $('.help-block').innerHTML = 'Downloaded!'
+                    downloader.file.getBlobURL(function (error, url) {
+                        console.log('getBlobURL:'+url);
+                        link.href = url;
+                        link.download = downloader.fileName;
+                        link.innerHTML = 'Download';
+                        link.classList.remove('sr-only');
+
+                        var audio = document.getElementById('sound');
+                        audio.src = url;
+                        audio.play();
+                    })
+                });　　　　　　　　           //结束下载时触发
+//        downloader.on('traffic', onTraffic);                  //节点流量统计
+                downloader.on('sourcemap', onSourceMap);          //记录每个buffer的下载源类型，其中s: server   n: node  d: data channel  b: browser
+
+
+            };
+
+        cpm.downloadfiles.addEventListener('click', function () {
+            cpm.downloadresult.classList.remove('sr-only');
+            cpm.table.innerHTML = "";
+            clientAdd(cpm.inputURL.value);
+        });
+
+    })();
+
+
+    //----------------------------------------pdf-----------------------------------------------------------------
+    (function () {
+
+        var cpm = {
+                inputURL: document.querySelectorAll('.cpm-inputurl')[3],
+                selectfiles: document.querySelectorAll('.cpm-selectfiles')[3],
+                downloadfiles: document.querySelectorAll('.cpm-downloadfiles')[3],
+                downloadresult: document.querySelectorAll('.cpm-downloadresult')[3],
+                table: document.querySelectorAll('.cpm-downloadresult table tbody')[3]
+            },
+            addToTable = function (i, n, s, d) {
+                cpm.table.innerHTML +=
+                    `<tr>
+                    <td>${i}</td>
+                    <td>${n}</td>
+                    <td></td>
+                    <td>${d}</td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;width: 0%">0%</div>
+                        </div>
+                    </td>
+                    <td><a class="sr-only" href="javascript:void(0);" download="pear.file">Waiting</a></td>
+                </tr>`
+            },
+            clientAdd = function (url) {
+                console.log('url:'+url);
+                var progress, size, speed, link;
+                //第一个参数为video标签的id或class
+                var downloader = new PearDownloader(url, token, {
+                    algorithm: 'firstaid',      //核心算法,默认firstaid
+                    interval: 5000,             //滑动窗口的时间间隔,单位毫秒,默认10s
+                    auto: false,                //true为连续下载buffer,false则是只有当前播放时间与已缓冲时间小于slideInterval时下载buffer,默认false
+                    slideInterval: 20,          //当前播放时间与已缓冲时间小于这个数值时触发窗口滑动,单位秒,默认20s
+                    useDataChannel: true,       //是否开启data channel,默认true
+                    dataChannels: 10,            //创建data channel的最大数量,默认2
+                    useTorrent: true,           //是否开启Browser P2P(基于Webtorrent)，默认true
+//                    magnetURI: magnetURI,       //可手动传入magnetURI，需先将useTorrent设为true
+//                    trackers:["wss://tracker.openwebtorrent.com"],    //可手动传入tracker服务器，需先将useTorrent设为true
+                    useMonitor: true             //是否开启monitor,会稍微影响性能,默认false
+                });
+                window.downloader = downloader;
+                addToTable(1, downloader.fileName, 0, 0);
+                progress = cpm.table.querySelectorAll('.progress-bar')[0];
+                link = cpm.table.querySelectorAll('tr td:last-child a')[0];
+                size = cpm.table.querySelectorAll('tr td:nth-child(3)')[0];
+                speed = cpm.table.querySelectorAll('tr td:nth-child(4)')[0];
+                window.link = link;
+                downloader.on('exception', function (exception) {
+                    var errCode = exception.errCode;
+                    switch (errCode) {
+                        case 1:
+                            console.log(exception.errMsg);
+                            break;
+                        case 2:
+                            console.log(exception.errMsg);
+                            link.href = cpm.inputURL.value;
+                            link.download = downloader.fileName;
+                            link.innerHTML = 'Download';
+                            link.classList.remove('sr-only');
+                            break;
+                    }
+                });               //下载器出现异常时的回调函数
+                downloader.on('begin', function (fileLength, chunks) {
+                    size.innerHTML = (fileLength/1024/1024).toFixed(2) + 'MB';
+
+                    defaultDownButton = chunks;
+                    toggoleObser();
+                });　　　　　　　　　　　　　 //开始下载时触发
+                downloader.on('meanspeed', function (meanSpeed) {
+                    speed.innerHTML = Math.round(meanSpeed) + 'KB/s';
+                });
+                downloader.on('progress', function (downloaded) {
+                    console.log('Progress: ' + (downloaded * 100).toFixed(1) + '%');
+                    var percent = (downloaded * 100).toFixed(1);
+                    percent = ((percent < 100) ? percent : 100);
+                    progress.innerHTML = percent + "%";
+                    progress.style.width = percent + "%";
+                });                                                   //回调目前的下载进度
+//        downloader.on('fograte', onWebRTCRate);　　　　　　　　　 //fog节点的下载比率（下载的字节数除以总的字节数）
+                downloader.on('buffersources', onBufferSources);       //buffer map，记录每个buffer的下载源类型，其中s: server   n: node  d: data channel  b: browser
+                downloader.on('done', function () {
+                    $('.help-block').innerHTML = 'Downloaded!'
+                    downloader.file.getBlobURL(function (error, url) {
+                        console.log('getBlobURL:'+url);
+                        link.href = url;
+                        link.download = downloader.fileName;
+                        link.innerHTML = 'Download';
+                        link.classList.remove('sr-only');
+
+                        document.querySelector("iframe").src = url;
+                    })
+                });　　　　　　　　           //结束下载时触发
+//        downloader.on('traffic', onTraffic);                  //节点流量统计
+                downloader.on('sourcemap', onSourceMap);          //记录每个buffer的下载源类型，其中s: server   n: node  d: data channel  b: browser
+
+            };
+
+        cpm.downloadfiles.addEventListener('click', function () {
+            cpm.downloadresult.classList.remove('sr-only');
+            cpm.table.innerHTML = "";
+            clientAdd(cpm.inputURL.value);
+        });
+
+    })();
+
+    //----------------------------------------binary-----------------------------------------------------------------
+
+    (function () {
+
+        var cpm = {
+                inputURL: document.querySelectorAll('.cpm-inputurl')[4],
+                selectfiles: document.querySelectorAll('.cpm-selectfiles')[4],
+                downloadfiles: document.querySelectorAll('.cpm-downloadfiles')[4],
+                downloadresult: document.querySelectorAll('.cpm-downloadresult')[4],
+                table: document.querySelectorAll('.cpm-downloadresult table tbody')[4]
+            },
+            addToTable = function (i, n, s, d) {
+                cpm.table.innerHTML +=
+                    `<tr>
+                    <td>${i}</td>
+                    <td>${n}</td>
+                    <td></td>
+                    <td>${d}</td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;width: 0%">0%</div>
+                        </div>
+                    </td>
+                    <td><a class="sr-only" href="javascript:void(0);" download="pear.file">Waiting</a></td>
+                </tr>`
+            },
+            clientAdd = function (url) {
+                console.log('url:'+url);
+                var progress, size, speed, link;
+                //第一个参数为video标签的id或class
+                var downloader = new PearDownloader(url, token, {
+                    algorithm: 'firstaid',      //核心算法,默认firstaid
+                    interval: 5000,             //滑动窗口的时间间隔,单位毫秒,默认10s
+                    auto: false,                //true为连续下载buffer,false则是只有当前播放时间与已缓冲时间小于slideInterval时下载buffer,默认false
+                    slideInterval: 20,          //当前播放时间与已缓冲时间小于这个数值时触发窗口滑动,单位秒,默认20s
+                    useDataChannel: true,       //是否开启data channel,默认true
+                    dataChannels: 10,            //创建data channel的最大数量,默认2
+                    useTorrent: true,           //是否开启Browser P2P(基于Webtorrent)，默认true
+//                    magnetURI: magnetURI,       //可手动传入magnetURI，需先将useTorrent设为true
+//                    trackers:["wss://tracker.openwebtorrent.com"],    //可手动传入tracker服务器，需先将useTorrent设为true
+                    useMonitor: true             //是否开启monitor,会稍微影响性能,默认false
+                });
+                window.downloader = downloader;
+                addToTable(1, downloader.fileName, 0, 0);
+                progress = cpm.table.querySelectorAll('.progress-bar');
+                link = cpm.table.querySelectorAll('tr td:last-child a');
+                size = cpm.table.querySelectorAll('tr td:nth-child(3)');
+                speed = cpm.table.querySelectorAll('tr td:nth-child(4)');
+                window.link = link;
+                downloader.on('exception', function (exception) {
+                    var errCode = exception.errCode;
+                    switch (errCode) {
+                        case 1:
+                            console.log(exception.errMsg);
+                            break;
+                        case 2:
+                            console.log(exception.errMsg);
+                            link[0].href = cpm.inputURL.value;
+                            link[0].download = downloader.fileName;
+                            link[0].innerHTML = 'Download';
+                            link[0].classList.remove('sr-only');
+                            break;
+                    }
+                });               //下载器出现异常时的回调函数
+                downloader.on('begin', function (fileLength, chunks) {
+                    size[0].innerHTML = (fileLength/1024/1024).toFixed(2) + 'MB';
+
+                    defaultDownButton = chunks;
+                    toggoleObser();
+                });　　　　　　　　　　　　　 //开始下载时触发
+                downloader.on('meanspeed', function (meanSpeed) {
+                    speed[0].innerHTML = Math.round(meanSpeed) + 'KB/s';
+                });
+                downloader.on('progress', function (downloaded) {
+                    console.log('Progress: ' + (downloaded * 100).toFixed(1) + '%');
+                    var percent = (downloaded * 100).toFixed(1);
+                    percent = ((percent < 100) ? percent : 100);
+                    progress[0].innerHTML = percent + "%";
+                    progress[0].style.width = percent + "%";
+                });                                                   //回调目前的下载进度
+//        downloader.on('fograte', onWebRTCRate);　　　　　　　　　 //fog节点的下载比率（下载的字节数除以总的字节数）
+                downloader.on('buffersources', onBufferSources);       //buffer map，记录每个buffer的下载源类型，其中s: server   n: node  d: data channel  b: browser
+                downloader.on('done', function () {
+                    $('.help-block').innerHTML = 'Downloaded!'
+                    downloader.file.getBlobURL(function (error, url) {
+                        console.log('getBlobURL:'+url);
+                        link[0].href = url;
+                        link[0].download = downloader.fileName;
+                        link[0].innerHTML = 'Download';
+                        link[0].classList.remove('sr-only');
+                    })
+                });　　　　　　　　           //结束下载时触发
+//        downloader.on('traffic', onTraffic);                  //节点流量统计
+                downloader.on('sourcemap', onSourceMap);          //记录每个buffer的下载源类型，其中s: server   n: node  d: data channel  b: browser
+
+            };
+
+        cpm.downloadfiles.addEventListener('click', function () {
+            cpm.downloadresult.classList.remove('sr-only');
+            cpm.table.innerHTML = "";
+            clientAdd(cpm.inputURL.value);
+        });
+
+    })();
+
+
+
+
+
+    //----------------------------------------log-----------------------------------------------------------------
+    function onBufferSources(bufferSources) {            //s: server   n: node  d: data channel  b: browser
+        console.log('Current Buffer Sources:' + bufferSources);
+    }
+
+//    function onSourceMap(sourceType, index) {
+//        console.log('Received source type:' + sourceType + ' index:' + index);
+//    }
+
+    //节点来源
+    var flag = false;
+    function onSourceMap(sourceType, index) {
+        // console.log('sourceType :'+ sourceType +'/'+'index :'+index);
+        if (!flag) {
+            toggoleObser();
+            flag = true;
+        }
+
+        showdata = sourceType;
+        i = index
+        var setDownColorClass = document.querySelectorAll(".insertButton")
+        if (setDownColorClass.length > 0) {
+            if (showdata == "s") {
+                setDownColorClass[i].classList.add('serverColor')
+            } else if (showdata == "n") {
+                setDownColorClass[i].classList.add('nodeColor')
+            }  else if (showdata == "undefined") {
+                setDownColorClass[i].classList.add('defualtColor')
+            } else if (showdata == "d") {
+                setDownColorClass[i].classList.add('dataChannelColor')
+            }else if (showdata == "b") {
+                setDownColorClass[i].classList.add('browserColor')
+            }
+        }
+    }
+
+    // 生成一连串的方格子用于呈现下载数据类型
+    var insertbutton = function(buttonNumbers) {
+// var html = `<button type = 'button'class = "insertButton"></button>`
+        var findeInsert = document.querySelector('.downDataProgress');
+        while(findeInsert.hasChildNodes()) //当div下还存在子节点时 循环继续
+        {
+            findeInsert.removeChild(findeInsert.firstChild);
+        }
+        for(var i = 0 ; i < buttonNumbers; i++) {
+            var html = `<button type = 'button'class = "insertButton"></button>`
+            findeInsert.insertAdjacentHTML("beforeend", html)
+        }
+    }
+    // 点击进入或者退出观测界面
+    var toggoleObser = function() {
+        var findToggle = document.querySelector('.obrDropdown')
+        findToggle.classList.add('show-obser-button')
+        insertbutton(defaultDownButton)
+        toggoleDefault()
+        findeVideoButton()
+        // readyDownDataArr()
+        clickProgressArea()
+    }
+    // 点击出现或消失默认的颜色值
+    var toggoleDefault = function() {
+        var findDefaultColor = document.querySelector(".setDownTypeArea")
+// console.log("findeDefaultColor", findDefaultColor)
+        if(findDefaultColor.classList.contains("setDownTypeAreaShow")) {
+            findDefaultColor.classList.remove("setDownTypeAreaShow")
+        } else {
+            findDefaultColor.classList.add("setDownTypeAreaShow")
+        }
+    }
+
+    // 定义一个取得 class 的函数
+    var e = function(selector) {
+        return document.querySelectorAll(selector)
+    }
+
+    // 显示或关闭进度
+    var  clickProgressArea = function() {
+        var clickArea = document.querySelector('.downDataProgress')
+        if (clickArea.classList.contains('defaultdownDataProgress')) {
+            clickArea.classList.remove('defaultdownDataProgress')
+        }
+    }
+
+    var deafulspeedType = setInterval(function() {
+
+    }, 2000)
+
+    // 找到显示视频下载类型的格子
+    var findeVideoButton = function() {
+        var findeClassButton = document.querySelectorAll('.insertButton')
+        //  findeClassButton.classList.contains(')
+        for (var i = 0; i < findeClassButton.length; i++) {
+            var showclass = findeClassButton[i]
+            // console.log(i, showclass)
+        }
+    }
+
+</script>
+</body>
+
+</html>
