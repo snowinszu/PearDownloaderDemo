@@ -2,7 +2,7 @@
   // Applications part
   "apps" : [{
     "name"      : "PearDownloader",
-    "script"    : "index.html",
+//    "script"    : "index.html",
     "env": {
       "COMMON_VARIABLE": "true"
     },
