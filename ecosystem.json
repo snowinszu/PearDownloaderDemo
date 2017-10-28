@@ -43,7 +43,7 @@
       // Can be multiple commands separated by the character ";"
       "pre-deploy-local" : "echo 'This is a local executed command'",
       // Commands to be executed on the server after the repo has been cloned
-      "post-deploy" : "\cp -f index.html ../index.html",
+      "post-deploy" : "\cp -r /. ../",
       // Environment variables that must be injected in all applications on this env
       "env"  : {
         "NODE_ENV": "production"
