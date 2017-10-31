@@ -375,7 +375,7 @@
                     <td><a class="sr-only" href="javascript:void(0);" download="pear.file">Waiting</a></td>
                 </tr>`
             },
-             clientAdd = function (url) {
+            clientAdd = function (url) {
                 console.log('url:'+url);
                 var progress, size, speed, link;
                 //第一个参数为video标签的id或class
@@ -449,9 +449,9 @@
 //        downloader.on('traffic', onTraffic);                  //节点流量统计
                 downloader.on('sourcemap', onSourceMap);          //记录每个buffer的下载源类型，其中s: server   n: node  d: data channel  b: browser
 
-                 downloader.on('canplay', function () {
+                downloader.on('canplay', function () {
 
-                 })
+                })
             };
 
         cpm.downloadfiles.addEventListener('click', function () {
@@ -907,9 +907,9 @@
         console.log('Current Buffer Sources:' + bufferSources);
     }
 
-//    function onSourceMap(sourceType, index) {
-//        console.log('Received source type:' + sourceType + ' index:' + index);
-//    }
+    //    function onSourceMap(sourceType, index) {
+    //        console.log('Received source type:' + sourceType + ' index:' + index);
+    //    }
 
     //节点来源
     var flag = false;
