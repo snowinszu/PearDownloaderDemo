@@ -4,7 +4,7 @@
 <script src="./pear-downloader.min.js"></script>
 <head>
     <meta charset="UTF-8">
-    <title>Pear Downloader Demo</title>
+    <title>PearDownloaderDemo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <style>
@@ -382,7 +382,6 @@
                 var downloader = new PearDownloader(url, token, {
                     algorithm: 'firstaid',      //核心算法,默认firstaid
                     interval: 5000,             //滑动窗口的时间间隔,单位毫秒,默认10s
-                    auto: false,                //true为连续下载buffer,false则是只有当前播放时间与已缓冲时间小于slideInterval时下载buffer,默认false
                     slideInterval: 20,          //当前播放时间与已缓冲时间小于这个数值时触发窗口滑动,单位秒,默认20s
                     useDataChannel: true,       //是否开启data channel,默认true
                     dataChannels: 10,            //创建data channel的最大数量,默认2
@@ -496,7 +495,6 @@
                 var downloader = new PearDownloader(url, token, {
                     algorithm: 'firstaid',      //核心算法,默认firstaid
                     interval: 5000,             //滑动窗口的时间间隔,单位毫秒,默认10s
-                    auto: false,                //true为连续下载buffer,false则是只有当前播放时间与已缓冲时间小于slideInterval时下载buffer,默认false
                     slideInterval: 20,          //当前播放时间与已缓冲时间小于这个数值时触发窗口滑动,单位秒,默认20s
                     useDataChannel: true,       //是否开启data channel,默认true
                     dataChannels: 10,            //创建data channel的最大数量,默认2
@@ -609,7 +607,6 @@
                 var downloader = new PearDownloader(url, token, {
                     algorithm: 'firstaid',      //核心算法,默认firstaid
                     interval: 5000,             //滑动窗口的时间间隔,单位毫秒,默认10s
-                    auto: false,                //true为连续下载buffer,false则是只有当前播放时间与已缓冲时间小于slideInterval时下载buffer,默认false
                     slideInterval: 20,          //当前播放时间与已缓冲时间小于这个数值时触发窗口滑动,单位秒,默认20s
                     useDataChannel: true,       //是否开启data channel,默认true
                     dataChannels: 10,            //创建data channel的最大数量,默认2
@@ -719,7 +716,6 @@
                 var downloader = new PearDownloader(url, token, {
                     algorithm: 'firstaid',      //核心算法,默认firstaid
                     interval: 5000,             //滑动窗口的时间间隔,单位毫秒,默认10s
-                    auto: false,                //true为连续下载buffer,false则是只有当前播放时间与已缓冲时间小于slideInterval时下载buffer,默认false
                     slideInterval: 20,          //当前播放时间与已缓冲时间小于这个数值时触发窗口滑动,单位秒,默认20s
                     useDataChannel: true,       //是否开启data channel,默认true
                     dataChannels: 10,            //创建data channel的最大数量,默认2
@@ -826,7 +822,6 @@
                 var downloader = new PearDownloader(url, token, {
                     algorithm: 'firstaid',      //核心算法,默认firstaid
                     interval: 5000,             //滑动窗口的时间间隔,单位毫秒,默认10s
-                    auto: false,                //true为连续下载buffer,false则是只有当前播放时间与已缓冲时间小于slideInterval时下载buffer,默认false
                     slideInterval: 20,          //当前播放时间与已缓冲时间小于这个数值时触发窗口滑动,单位秒,默认20s
                     useDataChannel: true,       //是否开启data channel,默认true
                     dataChannels: 10,            //创建data channel的最大数量,默认2
